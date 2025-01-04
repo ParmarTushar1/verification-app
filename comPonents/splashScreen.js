@@ -1,23 +1,14 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 
 const SplashScreen = ({ navigation }) => {
   
   useEffect(() => {
-    fetch('https://user-gateway.test.ideopay.in/api/v1/onload/data')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
+    const timeout = setTimeout(() => {
+      navigation.navigate('MobileForm');
+    }, 3000);
 
-
-        const timeout = setTimeout(() => {
-          navigation.navigate('MobileForm');
-        }, 3000);
-        return () => clearTimeout(timeout);
-      })
-      .catch(error => {
-        console.error('Error fetching splash screen data:', error);
-      });
+    return () => clearTimeout(timeout);
   }, [navigation]);
 
   return (
